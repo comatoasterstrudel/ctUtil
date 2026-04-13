@@ -1,0 +1,10 @@
+{
+	"name": "ctUtil",
+	"url" : "https://github.com/comatoasterstrudel/ctUtil",
+	"license": "Apache",
+	"tags": ["lalala"],
+	"description": "A Handful Of Useful Utilities For My Games Made In HaxeFlixel !!!! ",
+	"version": "1.0.0",
+	"releasenote": "",
+	"contributors": ["comatoasterstrudel"]
+}
