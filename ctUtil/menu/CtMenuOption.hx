@@ -26,6 +26,11 @@ typedef CtMenuOption =
     var ?clickFunction:FlxSprite->Void;
     
     /**
+     * OPTIONAL; A function to trigger when you cancel an option
+     */
+    var ?cancelFunction:FlxSprite->Void;
+    
+    /**
      * OPTIONAL; Which way the cursor should face when this option is selected.
      */
     var ?cursorDirection:FlxDirection;

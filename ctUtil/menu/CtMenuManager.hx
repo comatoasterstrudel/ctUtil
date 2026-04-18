@@ -25,6 +25,11 @@ class CtMenuManager
     var selectFunction:Void->Bool;
     
 	/**
+	 * OPTIONAL; The function used to check when to cancel the currently selected option
+	 */
+    var cancelFunction:Void->Bool;
+	
+	/**
 	 * OPTIONAL; The function used to increase the selected rack
 	 */
 	var increaseRackFunction:Void->Bool;
@@ -70,15 +75,17 @@ class CtMenuManager
 	 * @param increaseFunction The function used to check when to increase the selected value.
 	 * @param decreaseFunction The function used to check when to increase the selected value.
 	 * @param selectFunction The function used to check when to select the currently selected option
+	 * @param cancelFunction The function used to check when to cancel the currently selected option
 	 * @param increaseRackFunction OPTIONAL; The function used to increase the selected rack
 	 * @param decreaseRackFunction OPTIONAL; The function used to decrease the selected rack
 	 */
-	public function new(increaseFunction:Void->Bool, decreaseFunction:Void->Bool, selectFunction:Void->Bool, ?increaseRackFunction:Void->Bool,
+	public function new(increaseFunction:Void->Bool, decreaseFunction:Void->Bool, selectFunction:Void->Bool, ?cancelFunction:Void->Bool, ?increaseRackFunction:Void->Bool,
 			?decreaseRackFunction:Void->Bool)
 	{        
         this.increaseFunction = increaseFunction;
         this.decreaseFunction = decreaseFunction;
 		this.selectFunction = selectFunction;        
+		this.cancelFunction = cancelFunction;
 		this.increaseRackFunction = increaseRackFunction;
 		this.decreaseRackFunction = decreaseRackFunction;
 
@@ -112,7 +119,8 @@ class CtMenuManager
             changeSelection(-1);
         }
         
-        if(selectFunction()) makeSelection();        
+        if(selectFunction()) makeSelection();      
+		if(cancelFunction != null && cancelFunction()) cancelSelection();  
     }
     
 	/**
@@ -179,7 +187,13 @@ class CtMenuManager
         
         if(option.clickFunction != null) option.clickFunction(option.sprite);
     }
-    
+	
+	function cancelSelection():Void{
+    	var option = menuOptions[curRack][curSelected];
+        
+        if(option.cancelFunction != null) option.cancelFunction(option.sprite);
+	}
+	
 	/**
 	 * Call this to set the options for this menu.
 	 * @param menuOptions Which options the menu should have.
