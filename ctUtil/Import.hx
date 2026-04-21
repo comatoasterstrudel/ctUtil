@@ -18,3 +18,5 @@ import haxe.Json;
 import haxe.iterators.StringIteratorUnicode;
 import openfl.Assets;
 import sys.FileSystem;
+
+using StringTools;
