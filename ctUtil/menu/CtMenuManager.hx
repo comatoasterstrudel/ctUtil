@@ -291,12 +291,16 @@ class CtMenuManager
 			{
 				case LEFT:
 					pos.set(option.sprite.x - cursor.width - cursorSpacing, option.sprite.y + option.sprite.height / 2 - cursor.height / 2);
+					cursor.angle = 270;
 				case RIGHT:
 					pos.set(option.sprite.x + option.sprite.width + cursorSpacing, option.sprite.y + option.sprite.height / 2 - cursor.height / 2);
+					cursor.angle = 90;
 				case DOWN:
 					pos.set(option.sprite.x + option.sprite.width / 2 - cursor.width / 2, option.sprite.y + option.sprite.height + cursorSpacing);
+					cursor.angle = 180;
 				case UP:
 					pos.set(option.sprite.x + option.sprite.width / 2 - cursor.width / 2, option.sprite.y - cursor.height - cursorSpacing);
+					cursor.angle = 0;
 			}
 			if (cursorDoLerp)
 			{
