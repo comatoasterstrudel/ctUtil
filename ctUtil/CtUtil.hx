@@ -34,7 +34,7 @@ class CtUtil{
 			sum += value;
 		}
 		return (sum / data.length);
-	}
+	} 
 	/**
 	 * Call this to center a sprites X values evenly, around a certain point
 	 * @param sprites An array of FlxSprite to center
@@ -107,5 +107,47 @@ class CtUtil{
 	 */
 	public static function compareFlxPoints(point1, point2):Bool{
 		return point1.x == point2.x && point1.y == point2.y;
+	}
+	
+	/**
+	 * Call this to get an array of paths to files in a certain folder
+	 * @param path The path to the folder you want to obtain the files from
+	 * @param extns the extensions of files you want. example: [".png", ".jpeg"] will return images
+	 * @param filePath if you want the full path for the file or just the file name
+	 * @param deepSearch should the search go deeper into folders inside of the folder
+	 * @return the list of files or paths
+	 */
+	public static function findFilesInPath(path:String, extns:Array<String>, ?filePath:Bool = false, ?deepSearch:Bool = true):Array<String>
+	{
+		var files:Array<String> = [];
+
+		if (FileSystem.exists(path))
+		{
+			for (file in FileSystem.readDirectory(path))
+			{
+				var path = haxe.io.Path.join([path, file]);
+				if (!FileSystem.isDirectory(path))
+				{
+					for (extn in extns)
+					{
+						if (file.endsWith(extn))
+						{
+							if (filePath)
+								files.push(path);
+							else
+								files.push(file);
+						}
+					}
+				}
+				else if (deepSearch) // ! YAY !!!! -lunar
+				{
+					var pathsFiles:Array<String> = findFilesInPath(path, extns, deepSearch);
+
+					for (_ in pathsFiles)
+						files.push(_);
+				}
+			}
+		}
+		return files;
 	}
 }
