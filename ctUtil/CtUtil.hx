@@ -150,4 +150,19 @@ class CtUtil{
 		}
 		return files;
 	}
+	
+	/**
+	 * Call this function to destroy an array of sprites, then clear the array
+	 * @param sprites the array of sprites to destroy
+	 * @return the empty array
+	 */
+	public static function destroyArrayOfSprites(sprites:Array<FlxSprite>):Array<FlxSprite>{
+		for(sprite in sprites){
+			sprite.destroy();
+		}
+		
+		sprites = [];
+		
+		return sprites;
+	}
 }
