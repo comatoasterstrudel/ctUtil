@@ -165,4 +165,19 @@ class CtUtil{
 		
 		return sprites;
 	}
+	
+	/**
+	 * Call this function to remove a list certain strings from a list of strings
+	 * @param text The list of strings you want to edit
+	 * @param strip The strings you want to remove from those texts
+	 * @return The edited texts
+	 */
+	public static function stripTextFromStrings(text:Array<String>, strip:Array<String>):Array<String>{
+		for(curText in 0...text.length){
+			for(curStrip in strip){
+				text[curText] = StringTools.replace(text[curText], curStrip, "");			
+			}
+		}
+		return text;
+	}
 }
