@@ -1,6 +1,7 @@
 package ctUtil;
 
 import ctUtil.*;
+import ctUtil.controls.*;
 import ctUtil.extensions.*;
 import ctUtil.json.*;
 import ctUtil.lerp.*;
@@ -10,6 +11,9 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.input.gamepad.FlxGamepad;
+import flixel.input.gamepad.FlxGamepadInputID;
+import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
