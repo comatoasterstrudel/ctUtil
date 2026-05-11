@@ -3,7 +3,7 @@ package ctUtil.extensions;
 /**
  * The replacement for FlxText in this project
  */
-class CtSprite extends FlxText
+class CtText extends FlxText
 {
     public var lerpManager:CtLerpManager;
      
