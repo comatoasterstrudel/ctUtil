@@ -7,7 +7,7 @@ class CtText extends FlxText
 {
     public var lerpManager:CtLerpManager;
      
-    public function new(?x:Float, ?y:Float, ?text:String, ?font:String, size:Int, ?antialiasing = true):Void{
+    public function new(?x:Float, ?y:Float, ?text:String, ?font:String, ?size:Int, ?antialiasing = true):Void{
         super(x,y);
         
         this.text = text;
