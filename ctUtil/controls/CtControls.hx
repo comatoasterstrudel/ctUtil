@@ -65,22 +65,22 @@ class CtControls
                 if(control.inputKey != null){
                     switch(type){
                         case JUSTRELEASED:
-                            if(FlxG.keys.anyJustReleased([control.inputKey])) result = true;
+                            if(FlxG.keys.anyJustReleased(control.inputKey)) result = true;
                         case PRESSED:
-                            if(FlxG.keys.anyPressed([control.inputKey])) result = true;
+                            if(FlxG.keys.anyPressed(control.inputKey)) result = true;
                         case JUSTPRESSED:
-                            if(FlxG.keys.anyJustPressed([control.inputKey])) result = true;
+                            if(FlxG.keys.anyJustPressed(control.inputKey)) result = true;
                     }
                 } 
                 
                 if (control.inputPad != null){
                     switch(type){
                         case JUSTRELEASED:
-                            if(isGamepadActive() && FlxG.gamepads.lastActive.anyJustReleased([control.inputPad])) result = true;
+                            if(isGamepadActive() && FlxG.gamepads.lastActive.anyJustReleased(control.inputPad)) result = true;
                         case PRESSED:
-                            if(isGamepadActive() && FlxG.gamepads.lastActive.anyPressed([control.inputPad])) result = true;
+                            if(isGamepadActive() && FlxG.gamepads.lastActive.anyPressed(control.inputPad)) result = true;
                         case JUSTPRESSED:
-                            if(isGamepadActive() && FlxG.gamepads.lastActive.anyJustPressed([control.inputPad])) result = true;
+                            if(isGamepadActive() && FlxG.gamepads.lastActive.anyJustPressed(control.inputPad)) result = true;
                     }
                 }
                 

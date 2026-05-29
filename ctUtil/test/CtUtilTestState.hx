@@ -6,9 +6,9 @@ class CtUtilTestState extends FlxState
 	
 	override public function create()
 	{
-		CtControls.registerControl({id: "down", inputKey: DOWN, inputPad: DPAD_DOWN});
-		CtControls.registerControl({id: "up", inputKey: UP, inputPad: DPAD_UP});
-		CtControls.registerControl({id: "accept", inputKey: Z, inputPad: A});
+		CtControls.registerControl({id: "down", inputKey: [DOWN], inputPad: [DPAD_DOWN]});
+		CtControls.registerControl({id: "up", inputKey: [UP], inputPad: [DPAD_UP]});
+		CtControls.registerControl({id: "accept", inputKey: [Z], inputPad: [A]});
 
 		menuManager = new CtMenuManager(CtControls.getInputFunction("down", JUSTPRESSED), CtControls.getInputFunction("up", JUSTPRESSED), CtControls.getInputFunction("accept", JUSTPRESSED));
 		

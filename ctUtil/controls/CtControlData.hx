@@ -12,10 +12,10 @@ typedef CtControlData = {
     /**
      * OPTIONAL; The FlxKey tied to this control. 
      */
-    var ?inputKey:FlxKey;
+    var ?inputKey:Array<FlxKey>;
     
     /**
      * OPTIONAL; The FlxGamepadInputID tied to this control. 
      */
-    var ?inputPad:FlxGamepadInputID;
+    var ?inputPad:Array<FlxGamepadInputID>;
 }
