@@ -4,6 +4,10 @@ class CtUtilTestState extends FlxState
 {	
 	var menuManager:CtMenuManager;
 	
+	var texts:Array<CtText> = [];
+	
+	var options:Array<CtMenuOption> = [];
+
 	override public function create()
 	{
 		CtControls.registerControl({id: "down", inputKey: [DOWN], inputPad: [DPAD_DOWN]});
@@ -12,19 +16,18 @@ class CtUtilTestState extends FlxState
 
 		menuManager = new CtMenuManager(CtControls.getInputFunction("down", JUSTPRESSED), CtControls.getInputFunction("up", JUSTPRESSED), CtControls.getInputFunction("accept", JUSTPRESSED));
 		
-		var options:Array<CtMenuOption> = [];
-		
 		var cursor = new CtSprite().createColorBlock(20, 5, FlxColor.GRAY);
 		add(cursor);
 			
-		menuManager.addCursor(cursor, 30, false);
+		menuManager.addCursor(cursor, 15, false);
 		
-		for(i in 0...5){
-			var sprite = new CtSprite(0, 50 * i).createColorBlock(10, 10, FlxColor.WHITE);
-			add(sprite);
-			
-			options.push({sprite: sprite, cursorDirection: RIGHT});
-		}
+		addOption("Test Option", function():Void{
+			trace("hi!!");
+		});
+		
+		addOption("Test Option 2", function():Void{
+			trace("hi!! asad");
+		});
 		
 		menuManager.setMenuOptions([options]);
 		menuManager.enable();
@@ -36,5 +39,16 @@ class CtUtilTestState extends FlxState
 		super.update(elapsed);
 		
 		menuManager.update();
+	}
+	
+	function addOption(name:String, func:Void->Void):Void{
+		var text = new CtText(40, 30 * (texts.length + 1), name, FlxAssets.FONT_DEFAULT, 20, false);
+		text.color = FlxColor.WHITE;
+		add(text);
+		texts.push(text);
+		
+		options.push({sprite: text, cursorDirection: LEFT, clickFunction: function(f):Void{
+			func();
+		}});
 	}
 }
