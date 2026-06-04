@@ -24,9 +24,10 @@ class CtUtilTestState extends FlxState
 		addOption("Test Option", function():Void{
 			trace("hi!!");
 		});
-		
-		addOption("Test Option 2", function():Void{
-			trace("hi!! asad");
+	
+		addOption("Test CtScript", function():Void{
+			var script = new CtScript("assets/data/testScript.hx");
+			script.executeFunction("test");
 		});
 		
 		menuManager.setMenuOptions([options]);
