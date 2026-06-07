@@ -10,6 +10,8 @@ class CtUtilTestState extends FlxState
 
 	override public function create()
 	{
+		super.create();
+
 		CtControls.registerControl({id: "down", inputKey: [DOWN], inputPad: [DPAD_DOWN]});
 		CtControls.registerControl({id: "up", inputKey: [UP], inputPad: [DPAD_UP]});
 		CtControls.registerControl({id: "accept", inputKey: [Z], inputPad: [A]});
@@ -30,10 +32,14 @@ class CtUtilTestState extends FlxState
 			script.executeFunction("test");
 		});
 		
-		menuManager.setMenuOptions([options]);
-		menuManager.enable();
+		addOption("Test CtCroppedBackdrop", function():Void{
+			var croppedBg = new CtCroppedBackdrop("assets/images/testbg.png", 200, 300, 1000, 100);
+			croppedBg.backdrop.velocity.set(10, 10);
+			add(croppedBg);
+		});
 		
-		super.create();
+		menuManager.setMenuOptions([options]);
+		menuManager.enable();		
 	}
 	
 	override function update(elapsed:Float):Void{

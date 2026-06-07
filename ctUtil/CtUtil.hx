@@ -180,4 +180,11 @@ class CtUtil{
 		}
 		return text;
 	}
+	
+	public static function renderFlxCameraToBitmapData(camera:FlxCamera):BitmapData { // thanks detective_baldi
+		var bitmapData:BitmapData = new BitmapData(camera.width, camera.height);
+		bitmapData.draw(camera.canvas, null, null, null, null, false);
+
+		return bitmapData;
+	}
 }
