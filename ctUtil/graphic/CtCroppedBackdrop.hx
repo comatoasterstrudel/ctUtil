@@ -27,8 +27,7 @@ class CtCroppedBackdrop extends CtSprite{
     }
     
     override function update(elapsed:Float):Void{          
-        backdrop.drawComplex(bgCamera);
-        loadGraphic(CtUtil.renderFlxCameraToBitmapData(bgCamera));
+        loadGraphic(CtUtil.renderFlxCameraToBitmapData(pixels, bgCamera));
 
         super.update(elapsed);
     }

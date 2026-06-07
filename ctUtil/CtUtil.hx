@@ -181,9 +181,16 @@ class CtUtil{
 		return text;
 	}
 	
-	public static function renderFlxCameraToBitmapData(camera:FlxCamera):BitmapData { // thanks detective_baldi
+	public static function renderFlxCameraToBitmapData(bitmap:BitmapData, camera:FlxCamera):BitmapData { // thanks detective_baldi
+		bitmap.draw(camera.canvas, null, null, null, null, false);
+
+		return bitmap;
+	}
+	
+	public static function renderFlxCameraToNewBitmapData(camera:FlxCamera):BitmapData { // thanks detective_baldi
 		var bitmapData:BitmapData = new BitmapData(camera.width, camera.height);
-		bitmapData.draw(camera.canvas, null, null, null, null, false);
+		
+		bitmapData = renderFlxCameraToBitmapData(bitmapData, camera);
 
 		return bitmapData;
 	}
