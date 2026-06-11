@@ -5,6 +5,8 @@ package ctUtil.script;
  */
 class CtScript
 {
+    public var name:String = "";
+    
     /**
      * Has init() been called yet?
      */
@@ -35,6 +37,9 @@ class CtScript
         for(value in defaultValues){
             setValue(value);
         }
+        
+        name = executeFunction("CTSCRIPT_SETNAME");
+        if(name == null) name = "";
     }
     
     /**
