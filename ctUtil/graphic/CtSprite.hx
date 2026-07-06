@@ -1,4 +1,4 @@
-package ctUtil.extensions;
+package ctUtil.graphic;
 
 /**
  * The replacement for FlxSprite in this project
