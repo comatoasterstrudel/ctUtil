@@ -159,9 +159,7 @@ class CtMenuManager
         }
 
 		for (rack in 0...menuOptions.length)
-		{
-			if(menuOptions[rack] == []) continue;
-			
+		{			
 			for (i in 0...menuOptions[curRack].length)
 			{
 				var option = menuOptions[rack][i];
