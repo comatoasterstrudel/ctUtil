@@ -203,7 +203,9 @@ class CtMenuManager
 	 */
 	public function setMenuOptions(menuOptions:Array<Array<CtMenuOption>>, ?reset:Bool = false):Void
 	{		
-		this.menuOptions = menuOptions;
+		this.menuOptions = menuOptions.filter(function(subArray) {
+			return subArray.length > 0;
+		});
 
 		if (reset)
 			resetSelected();
