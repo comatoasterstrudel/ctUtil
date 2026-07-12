@@ -164,6 +164,8 @@ class CtMenuManager
 			{
 				var option = menuOptions[rack][i];
                 
+				if(option == null) continue;
+				
 				if ((curRack != rack || curSelected != i) && option.nonHoverFunction != null)
 				{
 					option.nonHoverFunction(option.sprite);
@@ -210,7 +212,6 @@ class CtMenuManager
 		if (enabled)
 		{
 			changeRack();
-			changeSelection();
 		}
 	}
 
@@ -230,7 +231,6 @@ class CtMenuManager
 		if (reset)
 			resetSelected();
 		changeRack();
-        changeSelection();
     }
     
 	/**

@@ -14,9 +14,12 @@ class CtUtilTestState extends FlxState
 
 		CtControls.registerControl({id: "down", inputKey: [DOWN], inputPad: [DPAD_DOWN]});
 		CtControls.registerControl({id: "up", inputKey: [UP], inputPad: [DPAD_UP]});
+		CtControls.registerControl({id: "left", inputKey: [LEFT], inputPad: [DPAD_LEFT]});
+		CtControls.registerControl({id: "right", inputKey: [RIGHT], inputPad: [DPAD_RIGHT]});
+		CtControls.registerControl({id: "cancel", inputKey: [ESCAPE], inputPad: [B]});
 		CtControls.registerControl({id: "accept", inputKey: [Z], inputPad: [A]});
 
-		menuManager = new CtMenuManager(CtControls.getInputFunction("down", JUSTPRESSED), CtControls.getInputFunction("up", JUSTPRESSED), CtControls.getInputFunction("accept", JUSTPRESSED));
+		menuManager = new CtMenuManager(CtControls.getInputFunction("down", JUSTPRESSED), CtControls.getInputFunction("up", JUSTPRESSED), CtControls.getInputFunction("accept", JUSTPRESSED), CtControls.getInputFunction("cancel", JUSTPRESSED), CtControls.getInputFunction("right", JUSTPRESSED), CtControls.getInputFunction("left", JUSTPRESSED));
 		
 		var cursor = new CtSprite().createColorBlock(20, 5, FlxColor.GRAY);
 		add(cursor);
@@ -38,7 +41,11 @@ class CtUtilTestState extends FlxState
 			add(croppedBg);
 		});
 		
-		menuManager.setMenuOptions([options]);
+		var testSmallRack = new CtText(FlxG.width - 200, 30, "Test Small Rack", FlxAssets.FONT_DEFAULT, 20, false);
+		testSmallRack.color = FlxColor.WHITE;
+		add(testSmallRack);
+				
+		menuManager.setMenuOptions([options, [{sprite: testSmallRack, cursorDirection: LEFT}]]);
 		menuManager.enable();		
 	}
 	
