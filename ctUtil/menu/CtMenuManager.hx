@@ -160,6 +160,8 @@ class CtMenuManager
 
 		for (rack in 0...menuOptions.length)
 		{
+			if(menuOptions[rack] == []) continue;
+			
 			for (i in 0...menuOptions[curRack].length)
 			{
 				var option = menuOptions[rack][i];
@@ -200,8 +202,9 @@ class CtMenuManager
 	 * @param reset Should this menu reset the currently selected option to 0?
 	 */
 	public function setMenuOptions(menuOptions:Array<Array<CtMenuOption>>, ?reset:Bool = false):Void
-	{
+	{		
 		this.menuOptions = menuOptions;
+
 		if (reset)
 			resetSelected();
 		if (enabled)
