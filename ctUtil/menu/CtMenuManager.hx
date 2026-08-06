@@ -68,6 +68,11 @@ class CtMenuManager
 	 * Should the cursor use the build in lerping in CtSprite?
 	 */
     var cursorDoLerp:Bool;
+
+	/**
+	 * Should the cursor update its position every frame?
+	 */
+	var cursorUpdateEveryFrame:Bool;
     
 	/**
 	 * Call this to initialize the menu or change the options it has.
@@ -120,7 +125,11 @@ class CtMenuManager
         }
         
         if(selectFunction()) makeSelection();      
-		if(cancelFunction != null && cancelFunction()) cancelSelection();  
+		if(cancelFunction != null && cancelFunction()) cancelSelection(); 
+		
+		if(cursorUpdateEveryFrame){
+			updateCursorWithOption(menuOptions[curRack][curSelected]);
+		}
     }
     
 	/**
@@ -260,10 +269,12 @@ class CtMenuManager
 	 * @param cursorDoLerp Should the cursor use the build in lerping in CtSprite?
 	 * @return The cursor used
 	 */
-    public function addCursor(cursor:CtSprite, cursorSpacing:Float, ?cursorDoLerp:Bool = false):FlxSprite{
+    public function addCursor(cursor:CtSprite, cursorSpacing:Float, ?cursorDoLerp:Bool = false, ?cursorUpdateEveryFrame:Bool = false):FlxSprite{
         this.cursor = cursor;
         this.cursorSpacing = cursorSpacing;
         this.cursorDoLerp = cursorDoLerp;
+		this.cursorUpdateEveryFrame = cursorUpdateEveryFrame;
+
 		if (cursorDoLerp)
 		{
 			cursor.lerpManager.lerpX = true;
