@@ -7,7 +7,7 @@ class CtMenuManager
 	/**
 	 * The list of menuOptions this menu has
 	 */
-	var menuOptions:Array<Array<CtMenuOption>>;
+	public var menuOptions:Array<Array<CtMenuOption>>;
     
 	/**
 	 * The function used to check when to increase the selected value.
@@ -284,7 +284,7 @@ class CtMenuManager
 	 * Call this to move the cursor to an option, if the cursor isn't null
 	 * @param option The option the cursor should move to
 	 */
-	function updateCursorWithOption(option:CtMenuOption):Void
+	public function updateCursorWithOption(option:CtMenuOption):Void
 	{
 		if (cursor != null && option.cursorDirection != null)
 		{
