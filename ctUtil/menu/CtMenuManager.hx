@@ -127,7 +127,7 @@ class CtMenuManager
         if(selectFunction()) makeSelection();      
 		if(cancelFunction != null && cancelFunction()) cancelSelection(); 
 		
-		if(cursorUpdateEveryFrame){
+		if(cursorUpdateEveryFrame && cursor.alive){
 			updateCursorWithOption(menuOptions[curRack][curSelected]);
 		}
     }
