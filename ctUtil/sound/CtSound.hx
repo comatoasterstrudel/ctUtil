@@ -41,7 +41,7 @@ class CtSound
         return FlxG.sound.load(embeddedSound, adjustVolumeWithMetaData(volume, metaData), looped, group, autoDestroy, autoPlay, url, onComplete, onLoad);
     }
 
-    public static function playMusic(?embeddedSound:FlxSoundAsset, volume = 1.0, looped = false, ?group:FlxSoundGroup):Void{
+    public static function playMusic(?embeddedSound:FlxSoundAsset, volume = 1.0, looped = true, ?group:FlxSoundGroup):Void{
         var metaData = getMetaData(embeddedSound);
         FlxG.sound.playMusic(embeddedSound, adjustVolumeWithMetaData(volume, metaData), looped, group);
     }
