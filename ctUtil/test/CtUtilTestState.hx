@@ -45,6 +45,14 @@ class CtUtilTestState extends FlxState
 		testSmallRack.color = FlxColor.WHITE;
 		add(testSmallRack);
 				
+		addOption("Big Fart", function():Void{
+			FlxG.sound.play("assets/sounds/dry-fart.ogg");
+		});
+
+		addOption("Small Fart", function():Void{
+			CtSound.play("assets/sounds/dry-fart.ogg");
+		});
+		
 		menuManager.setMenuOptions([options, [{sprite: testSmallRack, cursorDirection: LEFT}]]);
 		menuManager.enable();		
 	}
