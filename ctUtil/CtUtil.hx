@@ -194,4 +194,9 @@ class CtUtil{
 
 		return bitmapData;
 	}
+
+	public static function roundToMultiple(value:Float, multiple:Float):Float {
+        if (multiple == 0) return value;
+        return Math.round(value / multiple) * multiple;
+    }
 }
