@@ -199,4 +199,8 @@ class CtUtil{
         if (multiple == 0) return value;
         return Math.round(value / multiple) * multiple;
     }
+
+	public static function getFullValue(num:Float):Float{
+		return (num >= 0 ? num : (num - (num * 2)));
+	}
 }
