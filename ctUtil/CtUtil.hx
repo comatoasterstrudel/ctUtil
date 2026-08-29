@@ -204,7 +204,7 @@ class CtUtil{
 		return (num >= 0 ? num : (num - (num * 2)));
 	}
 
-	function isSpriteFullyInside(inner:FlxSprite, outer:FlxSprite):Bool {
+	public static function isSpriteFullyInside(inner:FlxSprite, outer:FlxSprite):Bool {
     	return inner.x >= outer.x && inner.y >= outer.y && (inner.x + inner.width) <= (outer.x + outer.width) && (inner.y + inner.height) <= (outer.y + outer.height);
 	}
 }
