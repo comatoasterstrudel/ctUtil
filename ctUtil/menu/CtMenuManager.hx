@@ -75,6 +75,36 @@ class CtMenuManager
 	var cursorUpdateEveryFrame:Bool;
     
 	/**
+	 * DEFAULT: The function used to check when to increase the selected value.
+	 */
+    public static var defaultIncreaseFunction:Void->Bool;
+    
+	/**
+	 * DEFAULT: The function used to check when to increase the selected value.
+	 */
+    public static var defaultDecreaseFunction:Void->Bool;
+    
+	/**
+	 * DEFAULT: The function used to check when to select the currently selected option
+	 */
+    public static var defaultSelectFunction:Void->Bool;
+    
+	/**
+	 * DEFAULT: OPTIONAL; The function used to check when to cancel the currently selected option
+	 */
+    public static var defaultCancelFunction:Void->Bool;
+	
+	/**
+	 * DEFAULT: OPTIONAL; The function used to increase the selected rack
+	 */
+	public static var defaultIncreaseRackFunction:Void->Bool;
+
+	/**
+	 * OPTIONAL; The function used to decrease the selected rack
+	 */
+	public static var defaultDecreaseRackFunction:Void->Bool;
+
+	/**
 	 * Call this to initialize the menu or change the options it has.
 	 * @param menuOptions The list of menuOptions this menu has
 	 * @param increaseFunction The function used to check when to increase the selected value.
@@ -84,9 +114,15 @@ class CtMenuManager
 	 * @param increaseRackFunction OPTIONAL; The function used to increase the selected rack
 	 * @param decreaseRackFunction OPTIONAL; The function used to decrease the selected rack
 	 */
-	public function new(increaseFunction:Void->Bool, decreaseFunction:Void->Bool, selectFunction:Void->Bool, ?cancelFunction:Void->Bool, ?increaseRackFunction:Void->Bool,
-			?decreaseRackFunction:Void->Bool)
+	public function new(?increaseFunction:Void->Bool, ?decreaseFunction:Void->Bool, ?selectFunction:Void->Bool, ?cancelFunction:Void->Bool, ?increaseRackFunction:Void->Bool, ?decreaseRackFunction:Void->Bool)
 	{        
+		if(increaseFunction == null && defaultIncreaseFunction != null) increaseFunction = defaultIncreaseFunction;
+		if(decreaseFunction == null && defaultDecreaseFunction != null) decreaseFunction = defaultDecreaseFunction;
+		if(selectFunction == null && defaultSelectFunction != null) selectFunction = defaultSelectFunction;
+		if(cancelFunction == null && defaultCancelFunction != null) cancelFunction = defaultCancelFunction;
+		if(increaseRackFunction == null && defaultIncreaseRackFunction != null) increaseRackFunction = defaultIncreaseRackFunction;
+		if(decreaseRackFunction == null && defaultDecreaseRackFunction != null) decreaseRackFunction = defaultDecreaseRackFunction;
+
         this.increaseFunction = increaseFunction;
         this.decreaseFunction = decreaseFunction;
 		this.selectFunction = selectFunction;        
@@ -115,8 +151,8 @@ class CtMenuManager
 			changeRack(-1);
 		}
         
-        var doIncrease:Bool = increaseFunction();
-        var doDecrease:Bool = decreaseFunction();
+        var doIncrease:Bool = increaseFunction != null ? increaseFunction() : false;
+        var doDecrease:Bool = decreaseFunction != null ? decreaseFunction() : false;
         
         if(doIncrease && !doDecrease){
             changeSelection(1);
@@ -124,8 +160,13 @@ class CtMenuManager
             changeSelection(-1);
         }
         
-        if(selectFunction()) makeSelection();      
-		if(cancelFunction != null && cancelFunction()) cancelSelection(); 
+		var doSelection:Bool = selectFunction != null ? selectFunction() : false;
+
+        if(doSelection) makeSelection();    
+		
+		var doCancel:Bool = cancelFunction != null ? cancelFunction() : false;
+
+		if(doCancel) cancelSelection(); 
 		
 		if(cursorUpdateEveryFrame && cursor.alive){
 			updateCursorWithOption(menuOptions[curRack][curSelected]);
@@ -330,5 +371,15 @@ class CtMenuManager
 			cursor.kill();
 			FlxG.log.error("Menu option has no cursor direction listed. Cursor will be killed.");
 		}
+	}
+
+	public static function setDefaultControls(?increaseFunction:Void->Bool, ?decreaseFunction:Void->Bool, ?selectFunction:Void->Bool, ?cancelFunction:Void->Bool, ?increaseRackFunction:Void->Bool, ?decreaseRackFunction:Void->Bool)
+	{        
+		if(increaseFunction != null) defaultIncreaseFunction = increaseFunction;
+		if(decreaseFunction != null) defaultDecreaseFunction = decreaseFunction;
+		if(selectFunction != null) defaultSelectFunction = selectFunction;
+		if(cancelFunction != null) defaultCancelFunction = cancelFunction;
+		if(increaseRackFunction != null) defaultIncreaseRackFunction = increaseRackFunction;
+		if(decreaseRackFunction != null) defaultDecreaseRackFunction = decreaseRackFunction;
 	}
 }
