@@ -54,6 +54,10 @@ class CtMenuManager
 	 */
 	public var curSelected:Int = 0;
     
+	var lastRack:Int = 0;
+
+	var lastSelected:Int = 0;
+	
 	/**
 	 * The cursor sprite for this menu. If this is null, the cursor simply wont be used.
 	 */
@@ -190,6 +194,14 @@ class CtMenuManager
 			curRack = menuOptions.length - 1;
 		}
 
+		if(curRack != lastRack){
+			if(scrollRackSoundPath != "" && playScrollRackSound){
+				playUISound(scrollRackSoundPath);
+			}	
+		}
+
+		lastRack = curRack;
+
 		changeSelection();
 	}
     
@@ -207,6 +219,14 @@ class CtMenuManager
         } else if(curSelected < 0){
 			curSelected = menuOptions[curRack].length - 1;
         }
+
+		if(curSelected != lastSelected){
+			if(scrollSelectedSoundPath != "" && playScrollSelectedSound){
+				playUISound(scrollSelectedSoundPath);
+			}	
+		}
+
+		lastSelected = curSelected;
 
 		for (rack in 0...menuOptions.length)
 		{			
@@ -237,13 +257,25 @@ class CtMenuManager
     function makeSelection():Void{
 		var option = menuOptions[curRack][curSelected];
         
-        if(option.clickFunction != null) option.clickFunction(option.sprite);
+        if(option.clickFunction != null) {
+			option.clickFunction(option.sprite);
+
+			if(selectSoundPath != "" && playSelectSound){
+				playUISound(selectSoundPath);
+			}	
+		}
     }
 	
 	function cancelSelection():Void{
     	var option = menuOptions[curRack][curSelected];
         
-        if(option.cancelFunction != null) option.cancelFunction(option.sprite);
+        if(option.cancelFunction != null) {
+			option.cancelFunction(option.sprite);
+
+			if(cancelSoundPath != "" && playCancelSound){
+				playUISound(cancelSoundPath);
+			}	
+		}
 	}
 	
 	/**
@@ -381,5 +413,27 @@ class CtMenuManager
 		if(cancelFunction != null) defaultCancelFunction = cancelFunction;
 		if(increaseRackFunction != null) defaultIncreaseRackFunction = increaseRackFunction;
 		if(decreaseRackFunction != null) defaultDecreaseRackFunction = decreaseRackFunction;
+	}
+
+	public static var uiSound:FlxSound;
+
+	public static var selectSoundPath:String = "";
+	public static var scrollSelectedSoundPath:String = "";
+	public static var scrollRackSoundPath:String = "";
+	public static var cancelSoundPath:String = "";
+
+	public var playSelectSound:Bool = true;
+	public var playScrollSelectedSound:Bool = true;
+	public var playScrollRackSound:Bool = true;
+	public var playCancelSound:Bool = true;
+
+	public static function playUISound(path:String):Void{
+		if(uiSound != null){
+			uiSound.stop();
+			uiSound.destroy();
+			uiSound = null;
+		}
+
+		uiSound = CtSound.play(path);
 	}
 }
