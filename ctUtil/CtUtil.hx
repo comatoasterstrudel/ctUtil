@@ -194,9 +194,9 @@ class CtUtil{
 
 		return bitmapData;
 	}
-
+ 
 	public static function renderFlxCameraToCtSprite(sprite:CtSprite, camera:FlxCamera):CtSprite {
-		sprite.createColorBlock(camera.width, camera.height, FlxColor.RED);
+		sprite.createColorBlock(camera.width, camera.height, FlxColor.TRANSPARENT);
 		sprite.loadGraphic(CtUtil.renderFlxCameraToBitmapData(sprite.pixels, camera));
 
 		return sprite;
