@@ -195,8 +195,8 @@ class CtMenuManager
 		}
 
 		if(curRack != lastRack && amount != 0){
-			if(scrollRackSoundPath != "" && playScrollRackSound){
-				playUISound(scrollRackSoundPath);
+			if(getUiSound("scrollRack") != "" && playScrollRackSound){
+				playUISound(getUiSound("scrollRack"));
 			}	
 		}
 
@@ -221,8 +221,8 @@ class CtMenuManager
         }
 
 		if(curSelected != lastSelected && amount != 0){
-			if(scrollSelectedSoundPath != "" && playScrollSelectedSound){
-				playUISound(scrollSelectedSoundPath);
+			if(getUiSound("scrollSelected") != "" && playScrollSelectedSound){
+				playUISound(getUiSound("scrollSelected"));
 			}	
 		}
 
@@ -260,8 +260,8 @@ class CtMenuManager
         if(option.clickFunction != null) {
 			option.clickFunction(option.sprite);
 
-			if(selectSoundPath != "" && playSelectSound){
-				playUISound(selectSoundPath);
+			if(getUiSound("select") != "" && playSelectSound){
+				playUISound(getUiSound("select"));
 			}	
 		}
     }
@@ -272,8 +272,8 @@ class CtMenuManager
         if(option.cancelFunction != null) {
 			option.cancelFunction(option.sprite);
 
-			if(cancelSoundPath != "" && playCancelSound){
-				playUISound(cancelSoundPath);
+			if(getUiSound("cancel") != "" && playCancelSound){
+				playUISound(getUiSound("cancel"));
 			}	
 		}
 	}
@@ -417,10 +417,15 @@ class CtMenuManager
 
 	public static var uiSound:FlxSound;
 
-	public static var selectSoundPath:String = "";
-	public static var scrollSelectedSoundPath:String = "";
-	public static var scrollRackSoundPath:String = "";
-	public static var cancelSoundPath:String = "";
+	public static var defaultSelectSoundPath:String = "";
+	public static var defaultScrollSelectedSoundPath:String = "";
+	public static var defaultScrollRackSoundPath:String = "";
+	public static var defaultCancelSoundPath:String = "";
+
+	public var selectSoundPath:String = "";
+	public var scrollSelectedSoundPath:String = "";
+	public var scrollRackSoundPath:String = "";
+	public var cancelSoundPath:String = "";
 
 	public var playSelectSound:Bool = true;
 	public var playScrollSelectedSound:Bool = true;
@@ -435,5 +440,41 @@ class CtMenuManager
 		}
 
 		uiSound = CtSound.play(path);
+	}
+
+	/**
+	 * types:
+	 * 
+	 * select
+	 * scrollSelected
+	 * scrollRack
+	 * cancel
+	 */
+	function getUiSound(type:String):String{
+		var thingBase:String = "";
+		var thingDefault:String = "";
+
+		switch(type){
+			case "select":
+				thingBase = selectSoundPath;
+				thingDefault = defaultSelectSoundPath;
+			case "scrollSelected":
+				thingBase = scrollSelectedSoundPath;
+				thingDefault = defaultScrollSelectedSoundPath;
+			case "scrollRack":
+				thingBase = scrollRackSoundPath;
+				thingDefault = defaultScrollRackSoundPath;
+			case "cancel":
+				thingBase = cancelSoundPath;
+				thingDefault = defaultCancelSoundPath;
+		}
+
+		if(thingBase == "" && thingDefault != ""){
+			return thingDefault;
+		} else if(thingBase != ""){
+			return thingBase;
+		} else {
+			return "";
+		}
 	}
 }
