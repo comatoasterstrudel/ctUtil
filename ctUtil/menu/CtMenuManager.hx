@@ -194,7 +194,7 @@ class CtMenuManager
 			curRack = menuOptions.length - 1;
 		}
 
-		if(curRack != lastRack){
+		if(curRack != lastRack && amount != 0){
 			if(scrollRackSoundPath != "" && playScrollRackSound){
 				playUISound(scrollRackSoundPath);
 			}	
@@ -220,7 +220,7 @@ class CtMenuManager
 			curSelected = menuOptions[curRack].length - 1;
         }
 
-		if(curSelected != lastSelected){
+		if(curSelected != lastSelected && amount != 0){
 			if(scrollSelectedSoundPath != "" && playScrollSelectedSound){
 				playUISound(scrollSelectedSoundPath);
 			}	
