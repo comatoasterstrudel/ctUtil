@@ -15,6 +15,7 @@ import ctUtil.script.hscript.*;
 import ctUtil.test.*;
 import ctUtil.sound.*;
 import flixel.FlxCamera;
+import openfl.geom.Point;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import ctUtil.json.*;

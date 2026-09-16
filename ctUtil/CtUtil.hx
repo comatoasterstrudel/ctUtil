@@ -195,6 +195,13 @@ class CtUtil{
 		return bitmapData;
 	}
 
+	public static function renderFlxCameraToCtSprite(sprite:CtSprite, camera:FlxCamera):CtSprite {
+		sprite.createColorBlock(camera.width, camera.height, FlxColor.RED);
+		sprite.loadGraphic(CtUtil.renderFlxCameraToBitmapData(sprite.pixels, camera));
+
+		return sprite;
+	}
+
 	public static function roundToMultiple(value:Float, multiple:Float):Float {
         if (multiple == 0) return value;
         return Math.round(value / multiple) * multiple;

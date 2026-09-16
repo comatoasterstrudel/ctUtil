@@ -52,6 +52,16 @@ class CtUtilTestState extends FlxState
 		addOption("Small Fart", function():Void{
 			CtSound.play("assets/sounds/dry-fart.ogg");
 		});
+
+		addOption("Test Drawing Camera To Sprite", function():Void{
+			var newSpr = new CtSprite();
+			newSpr = CtUtil.renderFlxCameraToCtSprite(newSpr, FlxG.camera);
+			add(newSpr);
+		});
+
+		addOption("Move Camera Right", function():Void{
+			FlxG.camera.scroll.x += 50;
+		});
 		
 		menuManager.setMenuOptions([options, [{sprite: testSmallRack, cursorDirection: LEFT}]]);
 		menuManager.enable();		
