@@ -1,4 +1,4 @@
-package cache;
+package ctUtil.cache;
 
 /**
  * This class contains functions to cache audio and graphics (not yet)
