@@ -61,7 +61,7 @@ class CtMenuManager
 	/**
 	 * The cursor sprite for this menu. If this is null, the cursor simply wont be used.
 	 */
-    var cursor:CtSprite;
+    public var cursor:CtSprite;
     
 	/**
 	 * How far the cursor will be spaced from the option its tied to.
