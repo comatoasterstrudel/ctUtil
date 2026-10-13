@@ -7,7 +7,7 @@ class CtSound
         if(embeddedSound is String){
             var extensions:Array<String> = [".mp3", ".ogg"];
 
-            var fixedPath:String = embeddedSound;
+            var fixedPath:String = cast embeddedSound;
 
             for(extension in extensions){
                 fixedPath = FlxStringUtil.remove(fixedPath, extension);
