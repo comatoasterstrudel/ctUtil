@@ -41,6 +41,15 @@ class CtSound
         return FlxG.sound.load(embeddedSound, adjustVolumeWithMetaData(volume, metaData), looped, group, autoDestroy, autoPlay, url, onComplete, onLoad);
     }
 
+    public static function loadEmbedded(EmbeddedSound:FlxSoundAsset, Looped:Bool = false, AutoDestroy:Bool = false, ?OnComplete:Void->Void):FlxSound{
+        var thing = new FlxSound().loadEmbedded(EmbeddedSound, Looped, AutoDestroy, OnComplete);
+        
+        var metaData = getMetaData(EmbeddedSound);
+        thing.volume = adjustVolumeWithMetaData(thing.volume, metaData);
+
+        return thing;
+    }
+
     public static function playMusic(?embeddedSound:FlxSoundAsset, volume = 1.0, looped = true, ?group:FlxSoundGroup):Void{
         var metaData = getMetaData(embeddedSound);
         FlxG.sound.playMusic(embeddedSound, adjustVolumeWithMetaData(volume, metaData), looped, group);
