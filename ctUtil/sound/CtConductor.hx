@@ -72,7 +72,7 @@ class CtConductor
 
 		curBeat = Math.round(curStep / 4);
 
-		BeatManager.globalCurBeat = curBeat;
+		CtConductor.globalCurBeat = curBeat;
 	}
 
 	private function everyStep():Void
