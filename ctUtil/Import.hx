@@ -43,5 +43,7 @@ import hscript.Interp;
 import openfl.Assets;
 import openfl.display.BitmapData;
 import sys.FileSystem;
+import flixel.util.FlxSignal;
+import flixel.util.FlxSignal.FlxTypedSignal;
 
 using StringTools;
