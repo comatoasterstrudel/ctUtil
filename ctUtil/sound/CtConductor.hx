@@ -9,8 +9,6 @@ class CtConductor
 	var bpm:Float;
 	var beatInterval:Float;
 
-	public var timer:FlxTimer;
-
 	var onBeat = new FlxTypedSignal<Int>();
 	var onStep = new FlxTypedSignal<Int>();
 
