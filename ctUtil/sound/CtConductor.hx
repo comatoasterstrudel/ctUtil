@@ -1,4 +1,4 @@
-package sound;
+package ctUtil.sound;
 
 /**
  * thanks fnf devs .
