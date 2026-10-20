@@ -9,8 +9,8 @@ class CtConductor
 	var bpm:Float;
 	var beatInterval:Float;
 
-	var onBeat = new FlxTypedSignal<Int>();
-	var onStep = new FlxTypedSignal<Int>();
+	var onBeat = new FlxTypedSignal<Int -> Void>();
+	var onStep = new FlxTypedSignal<Int -> Void>();
 
 	public var curBeat:Int = 0;
 	public var curStep:Int = 0;
@@ -46,8 +46,11 @@ class CtConductor
 		initialize();
 
 		curBeat = 0;
-		
-		newBeatFunction();
+	}
+
+	public function start():Void{
+		onBeat.dispatch(curBeat);
+		onStep.dispatch(curStep);
 	}
 
 	function initialize():Void{
