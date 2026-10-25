@@ -108,6 +108,8 @@ class CtMenuManager
 	 */
 	public static var defaultDecreaseRackFunction:Void->Bool;
 
+	public static var allowOverlappingUISounds:Bool = false;
+	
 	/**
 	 * Call this to initialize the menu or change the options it has.
 	 * @param menuOptions The list of menuOptions this menu has
@@ -433,13 +435,17 @@ class CtMenuManager
 	public var playCancelSound:Bool = true;
 
 	public static function playUISound(path:String):Void{
-		if(uiSound != null){
+		if(allowOverlappingUISounds){
+			CtSound.play(path);
+		} else {
+			if(uiSound != null){
 			uiSound.stop();
 			uiSound.destroy();
 			uiSound = null;
 		}
 
-		uiSound = CtSound.play(path);
+			uiSound = CtSound.play(path);
+		}
 	}
 
 	/**
