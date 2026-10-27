@@ -75,11 +75,7 @@ class ScriptSupport {
 		var ast:Expr = null;
 		try
 		{
-			#if sys
-			ast = parser.parseString(sys.io.File.getContent(path));
-			#else
-			trace("No sys support detected.");
-			#end
+			ast = parser.parseString(Assets.getText(path));
 		}
 		catch (ex)
 		{
