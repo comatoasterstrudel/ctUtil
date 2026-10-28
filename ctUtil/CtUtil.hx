@@ -121,31 +121,28 @@ class CtUtil{
 	{
 		var files:Array<String> = [];
 
-		if (Assets.exists(path))
+		for (file in readAssetDirectory(path))
 		{
-			for (file in readAssetDirectory(path))
+			var path = haxe.io.Path.join([path, file]);
+			if (!isAssetDirectory(path))
 			{
-				var path = haxe.io.Path.join([path, file]);
-				if (!isAssetDirectory(path))
+				for (extn in extns)
 				{
-					for (extn in extns)
+					if (file.endsWith(extn))
 					{
-						if (file.endsWith(extn))
-						{
-							if (filePath)
-								files.push(path);
-							else
-								files.push(file);
-						}
+						if (filePath)
+							files.push(path);
+						else
+							files.push(file);
 					}
 				}
-				else if (deepSearch) // ! YAY !!!! -lunar
-				{
-					var pathsFiles:Array<String> = findFilesInPath(path, extns, deepSearch);
+			}
+			else if (deepSearch) // ! YAY !!!! -lunar
+			{
+				var pathsFiles:Array<String> = findFilesInPath(path, extns, deepSearch);
 
-					for (_ in pathsFiles)
-						files.push(_);
-				}
+				for (_ in pathsFiles)
+					files.push(_);
 			}
 		}
 		return files;
@@ -173,11 +170,7 @@ class CtUtil{
 		
 		for (asset in Assets.list()) {
 			if (asset.startsWith(dirPath)) {
-				var localPath = asset.substring(dirPath.length);
-				
-				if (localPath.indexOf("/") == -1) {
-					contents.push(localPath);
-				}
+				contents.push(asset);
 			}
 		}
 		

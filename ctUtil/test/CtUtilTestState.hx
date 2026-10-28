@@ -63,6 +63,10 @@ class CtUtilTestState extends FlxState
 			FlxG.camera.scroll.x += 50;
 		});
 		
+		addOption("Test find all files within directory", function():Void{
+			trace(CtUtil.findFilesInPath("assets/images/", [".png",], true, true));
+		});
+
 		menuManager.setMenuOptions([options, [{sprite: testSmallRack, cursorDirection: LEFT}]]);
 		menuManager.enable();		
 	}

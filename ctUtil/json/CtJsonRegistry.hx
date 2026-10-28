@@ -29,4 +29,13 @@ class CtJsonRegistry
 
         return null;
     }
+
+    public function get(cl:Class<CtJsonLoader>, id:String):Dynamic
+    {
+        var single = getRegistry(cl);
+
+        if(single == null) return null;
+
+        return single.get(id);
+    }
 }
