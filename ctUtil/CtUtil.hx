@@ -170,7 +170,8 @@ class CtUtil{
 		
 		for (asset in Assets.list()) {
 			if (asset.startsWith(dirPath)) {
-				contents.push(asset);
+				var split = asset.split("/");
+				contents.push(split[split.length - 1]);
 			}
 		}
 		
