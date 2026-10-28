@@ -168,7 +168,7 @@ class CtUtil{
 		
 		if (!dirPath.endsWith("/")) dirPath += "/";
 		
-		for (asset in Assets.list()) {
+		for (asset in sortArrayAlphabetically(Assets.list())) {
 			if (asset.startsWith(dirPath)) {
 				var split = asset.split("/");
 				contents.push(split[split.length - 1]);
@@ -178,6 +178,16 @@ class CtUtil{
 		return contents;
 	}
 	
+	public static function sortArrayAlphabetically(arr:Array<String>):Array<String>
+	{
+		arr.sort(function(a:String, b:String):Int {
+			if (a < b) return -1;
+			if (a > b) return 1;
+			return 0;
+		});
+		return arr;
+	}
+
 	/**
 	 * Call this function to destroy an array of sprites, then clear the array
 	 * @param sprites the array of sprites to destroy
