@@ -15,6 +15,6 @@ class CtJsonRegistrySingle
     }
 
     public function get(id:String):Dynamic{
-        return jsons.get(id);
+        return Reflect.copy(jsons.get(id));
     }
 }
