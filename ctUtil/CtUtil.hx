@@ -119,63 +119,42 @@ class CtUtil{
 	 */
 	public static function findFilesInPath(path:String, extns:Array<String>, ?filePath:Bool = false, ?deepSearch:Bool = true):Array<String>
 	{
+		#if web
+		FlxG.log.error("findFilesInPath not supported on web!!");
+		return [];
+		#elseif desktop
 		var files:Array<String> = [];
 
-		for (file in readAssetDirectory(path))
+		if (sys.FileSystem.exists(path))
 		{
-			var path = haxe.io.Path.join([path, file]);
-			if (!isAssetDirectory(path))
+			for (file in sys.FileSystem.readDirectory(path))
 			{
-				for (extn in extns)
+				var path = haxe.io.Path.join([path, file]);
+				if (!sys.FileSystem.isDirectory(path))
 				{
-					if (file.endsWith(extn))
+					for (extn in extns)
 					{
-						if (filePath)
-							files.push(path);
-						else
-							files.push(file);
+						if (file.endsWith(extn))
+						{
+							if (filePath)
+								files.push(path);
+							else
+								files.push(file);
+						}
 					}
 				}
-			}
-			else if (deepSearch) // ! YAY !!!! -lunar
-			{
-				var pathsFiles:Array<String> = findFilesInPath(path, extns, deepSearch);
+				else if (deepSearch) // ! YAY !!!! -lunar
+				{
+					var pathsFiles:Array<String> = findFilesInPath(path, extns, deepSearch);
 
-				for (_ in pathsFiles)
-					files.push(_);
+					for (_ in pathsFiles)
+						files.push(_);
+				}
 			}
 		}
 		return files;
-	}
-	
-	public static function isAssetDirectory(dirPath:String):Bool {
-		if (!dirPath.endsWith("/")) {
-			dirPath += "/";
-		}
-		
-		var allAssets = Assets.list();
-		
-		for (asset in allAssets) {
-			if (asset.indexOf(dirPath) == 0) {
-				return true;
-			}
-		}
-    	return false;
-	}
-
-	public static function readAssetDirectory(dirPath:String):Array<String> {
-		var contents:Array<String> = [];
-		
-		if (!dirPath.endsWith("/")) dirPath += "/";
-		
-		for (asset in sortArrayAlphabetically(Assets.list())) {
-			if (asset.startsWith(dirPath)) {
-				var split = asset.split("/");
-				contents.push(split[split.length - 1]);
-			}
-		}
-		
-		return contents;
+		#end
+		return [];
 	}
 	
 	public static function sortArrayAlphabetically(arr:Array<String>):Array<String>

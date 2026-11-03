@@ -64,7 +64,7 @@ class CtUtilTestState extends FlxState
 		});
 		
 		addOption("Test find all files within directory", function():Void{
-			trace(CtUtil.findFilesInPath("assets/images/", [".png",], true, true));
+			trace(CtUtil.findFilesInPath("assets/images/", [".png",], true, false));
 		});
 
 		addOption("Test find all files within directory 2", function():Void{
