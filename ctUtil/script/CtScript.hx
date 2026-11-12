@@ -1,7 +1,9 @@
 package ctUtil.script;
 
+#if hscript_iris
 /**
  * A class for creating HScript files really really easily !!!
+ * this is built off of hscript-iris
  */
 class CtScript
 {
@@ -15,7 +17,7 @@ class CtScript
     /**
      * The actual script object for this CtScript. You shouldnt need to interface with this directly ever
      */
-    public var script:HaxeScript;
+    public var script:Iris;
     
     /**
      * The default values that will get applied to scripts
@@ -30,16 +32,20 @@ class CtScript
             return;
         }
         
-        script = HaxeScript.create(scriptPath);
-        script.loadFile(scriptPath);
+        script = new Iris(Assets.getText(scriptPath), {
+            name: "", 
+            autoRun: true, 
+            autoPreset: true
+        });
         
-        ScriptSupport.setScriptDefaultVars(script);
         for(value in defaultValues){
             setValue(value);
         }
         
         name = executeFunction("CTSCRIPT_SETNAME");
         if(name == null) name = "";
+
+        script.config.name = name;
     }
     
     /**
@@ -50,7 +56,7 @@ class CtScript
      */
     public function executeFunction(name:String, ?args:Array<Any>):Dynamic
     {
-        return script.executeFunc(name, args);        
+        return script.call(name, args).returnValue;        
     }
     
     /**
@@ -58,7 +64,7 @@ class CtScript
      * @param value 
      */
     public function setValue(value:CtScriptValue){
-        script.setVariable(value.name, value.value);    
+        script.set(value.name, value.value);    
     }
     
     /**
@@ -75,6 +81,20 @@ class CtScript
     public static function init():Void{
         if(initComplete) return;
         
+
+        setDefaultValue({name: "add", value: function(obj){
+            FlxG.state.add(obj);
+        }});
+
+        setDefaultValue({name: "remove", value: function(obj){
+            FlxG.state.remove(obj);
+        }});
+
+        setDefaultValue({name: "insert", value: function(pos, obj){
+            FlxG.state.insert(pos, obj);
+        }});
+
+        setDefaultValue({name: "CtUtil", value: CtUtil});
         setDefaultValue({name: "FlxG", value: FlxG});
         setDefaultValue({name: "FlxState", value: FlxState});
         setDefaultValue({name: "CtSprite", value: CtSprite});
@@ -84,3 +104,4 @@ class CtScript
         initComplete = true;
     }
 }
+#end

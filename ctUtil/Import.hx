@@ -10,8 +10,11 @@ import ctUtil.graphic.text.*;
 import ctUtil.json.*;
 import ctUtil.lerp.*;
 import ctUtil.menu.*;
+#if hscript_iris
 import ctUtil.script.*;
-import ctUtil.script.hscript.*;
+import crowplexus.iris.Iris;
+import crowplexus.iris.Iris.IrisCall;
+#end
 import ctUtil.test.*;
 import ctUtil.sound.*;
 import flixel.FlxCamera;
