@@ -32,15 +32,17 @@ class CtScript
             return;
         }
         
-        script = new Iris(Assets.getText(scriptPath));
+        var splitPath = scriptPath.split("/");
+        name = splitPath[splitPath.length - 1];
+        for(ending in [".hxc", ".hx"]){
+            name = StringTools.replace(name, ending, "");
+        }
+        
+        script = new Iris(Assets.getText(scriptPath), {name: name});
         
         for(value in defaultValues){
             setValue(value);
         }
-        
-        name = executeFunction("CTSCRIPT_SETNAME");
-        if(name == null) name = "CtScript";
-        script.rename(name);
     }
     
     /**
