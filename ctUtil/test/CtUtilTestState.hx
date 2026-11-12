@@ -33,6 +33,10 @@ class CtUtilTestState extends FlxState
 		addOption("Test CtScript", function():Void{
 			var script = new CtScript("assets/data/testScript.hxc");
 			script.executeFunction("test");
+
+			var text = script.executeFunction("test2");
+
+			trace(text);
 		});
 		
 		addOption("Test CtCroppedBackdrop", function():Void{

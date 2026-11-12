@@ -50,7 +50,13 @@ class CtScript
      */
     public function executeFunction(name:String, ?args:Array<Any>):Dynamic
     {
-        return script.call(name, args).returnValue;        
+        var result = script.call(name, args);
+
+        if(result == null){
+            return null;
+        } else {
+            return result.returnValue;        
+        }
     }
     
     /**

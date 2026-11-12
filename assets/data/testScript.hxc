@@ -12,3 +12,8 @@ function test(){
     
     FlxG.camera.flash(0xFF000000);
 }
+
+function test2():String
+{
+    return "fart";
+}
