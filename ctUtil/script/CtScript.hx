@@ -32,11 +32,7 @@ class CtScript
             return;
         }
         
-        script = new Iris(Assets.getText(scriptPath), {
-            name: "", 
-            autoRun: true, 
-            autoPreset: true
-        });
+        script = new Iris(Assets.getText(scriptPath));
         
         for(value in defaultValues){
             setValue(value);
@@ -44,8 +40,6 @@ class CtScript
         
         name = executeFunction("CTSCRIPT_SETNAME");
         if(name == null) name = "";
-
-        script.config.name = name;
     }
     
     /**
