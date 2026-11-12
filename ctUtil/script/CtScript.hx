@@ -106,5 +106,10 @@ class CtScript
 
         initComplete = true;
     }
+
+    public function destroy():Void{
+        script.destroy();
+        script = null;
+    }
 }
 #end
