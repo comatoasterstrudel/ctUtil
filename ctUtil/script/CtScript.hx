@@ -39,7 +39,8 @@ class CtScript
         }
         
         name = executeFunction("CTSCRIPT_SETNAME");
-        if(name == null) name = "";
+        if(name == null) name = "CtScript";
+        script.rename(name);
     }
     
     /**
