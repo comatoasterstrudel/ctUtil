@@ -41,8 +41,6 @@ import haxe.Exception;
 import haxe.Json;
 import haxe.io.Path;
 import haxe.iterators.StringIteratorUnicode;
-import hscript.Expr;
-import hscript.Interp;
 import openfl.Assets;
 import openfl.display.BitmapData;
 import flixel.util.FlxSignal;
