@@ -3,7 +3,8 @@ package ctUtil;
 /**
  * A class full of utilities I use in a lot of my projects.
  */
-class CtUtil{
+class CtUtil
+{
 	/**
 	 * Call this to lerp two values together
 	 * @param initialnum The number you want to lerp

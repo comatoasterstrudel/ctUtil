@@ -19,6 +19,8 @@ class CtUtilTestState extends FlxState
 		CtControls.registerControl({id: "cancel", inputKey: [ESCAPE], inputPad: [B]});
 		CtControls.registerControl({id: "accept", inputKey: [Z], inputPad: [A]});
 
+		CtSound.init();
+		
 		menuManager = new CtMenuManager(CtControls.getInputFunction("down", JUSTPRESSED), CtControls.getInputFunction("up", JUSTPRESSED), CtControls.getInputFunction("accept", JUSTPRESSED), CtControls.getInputFunction("cancel", JUSTPRESSED), CtControls.getInputFunction("right", JUSTPRESSED), CtControls.getInputFunction("left", JUSTPRESSED));
 		
 		var cursor = new CtSprite().createColorBlock(20, 5, FlxColor.GRAY);

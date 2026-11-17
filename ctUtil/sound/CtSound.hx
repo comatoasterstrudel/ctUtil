@@ -2,6 +2,13 @@ package ctUtil.sound;
 
 class CtSound
 {
+    public static var registry:CtJsonRegistry;
+
+    public static function init():Void{
+        registry = new CtJsonRegistry();
+        registry.addRegistry(CtSoundMetaData, CtUtil.findFilesInPath("assets/", ["_metadata.json"], true, true));
+    }
+    
     public static function getMetaData(embeddedSound:FlxSoundAsset):CtSoundMetaData
     {
         if(embeddedSound is String){
@@ -15,8 +22,8 @@ class CtSound
 
             fixedPath += "_metadata.json";
 
-            if(Assets.exists(fixedPath)){
-                return new CtSoundMetaData(fixedPath);
+            if(registry != null && registry.getRegistry(CtSoundMetaData).exists(fixedPath)){
+                return registry.get(CtSoundMetaData, fixedPath);
             }
         }
 
