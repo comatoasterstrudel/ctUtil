@@ -230,4 +230,23 @@ class CtUtil{
 	public static function isSpriteFullyInside(inner:FlxSprite, outer:FlxSprite):Bool {
     	return inner.x >= outer.x && inner.y >= outer.y && (inner.x + inner.width) <= (outer.x + outer.width) && (inner.y + inner.height) <= (outer.y + outer.height);
 	}
+
+	public static function trimSprite(sprite:FlxSprite):FlxSprite
+	{
+		var bmp:BitmapData = sprite.pixels;
+        
+        var bounds:Rectangle = bmp.getColorBoundsRect(0xFF000000, 0x00000000, false);
+        
+        if (bounds.width == 0 || bounds.height == 0) return sprite;
+        
+        var trimmedBmp = new BitmapData(Std.int(bounds.width), Std.int(bounds.height), true, 0x00000000);
+        
+        trimmedBmp.copyPixels(bmp, bounds, new Point(0, 0));
+        
+        sprite.pixels = trimmedBmp;
+        sprite.offset.set(bounds.x, bounds.y);
+        sprite.updateHitbox();
+
+		return sprite;
+	}
 }

@@ -45,5 +45,6 @@ import openfl.Assets;
 import openfl.display.BitmapData;
 import flixel.util.FlxSignal;
 import flixel.util.FlxSignal.FlxTypedSignal;
+import openfl.geom.Rectangle;
 
 using StringTools;
