@@ -27,8 +27,8 @@ class CtSprite extends FlxSprite
         return this;
     }
     
-    public function createColorBlock(width:Int, height:Int, color:FlxColor):CtSprite{
-        makeGraphic(width, height, color);
+    public function createColorBlock(width:Int, height:Int, color:FlxColor, ?unique:Bool = false, ?key:Null<String>):CtSprite{
+        makeGraphic(width, height, color, unique, key);
         return this;
     }
     
