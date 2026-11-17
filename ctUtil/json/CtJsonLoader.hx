@@ -7,15 +7,11 @@ class CtJsonLoader
 {
     public var data:Dynamic = null;
 
-    var disableErrors:Bool = false;
-
     /**
      * @param path the path to the JSON file you want to load
      * @param backupPath the path that should be used in the event the file you request isnt found
      */
-    public function new(path:String, ?backupPath:String):Void{
-        trace(disableErrors);
-        
+    public function new(path:String, ?backupPath:Null<String>, ?disableErrors:Bool = false):Void{        
         if(!Assets.exists(path)){
             if(backupPath != null){
                 if(Assets.exists(backupPath)){
