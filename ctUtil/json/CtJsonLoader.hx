@@ -14,6 +14,8 @@ class CtJsonLoader
      * @param backupPath the path that should be used in the event the file you request isnt found
      */
     public function new(path:String, ?backupPath:String):Void{
+        trace(disableErrors);
+        
         if(!Assets.exists(path)){
             if(backupPath != null){
                 if(Assets.exists(backupPath)){
