@@ -7,6 +7,8 @@ class CtJsonLoader
 {
     public var data:Dynamic = null;
 
+    var disableErrors:Bool = false;
+
     /**
      * @param path the path to the JSON file you want to load
      * @param backupPath the path that should be used in the event the file you request isnt found
@@ -15,14 +17,14 @@ class CtJsonLoader
         if(!Assets.exists(path)){
             if(backupPath != null){
                 if(Assets.exists(backupPath)){
-					FlxG.log.error("Can't find JSON file at " + path + ", used backup JSON file at " + backupPath + ".");
+					if(!disableErrors) FlxG.log.error("Can't find JSON file at " + path + ", used backup JSON file at " + backupPath + ".");
 					path = backupPath;
                 } else {
-					FlxG.log.error("Can't find JSON file at " + path + ", or backup JSON file at " + backupPath + ".");
+					if(!disableErrors) FlxG.log.error("Can't find JSON file at " + path + ", or backup JSON file at " + backupPath + ".");
                     return;
                 }
             } else {
-                FlxG.log.error("Can't find JSON file at " + path + ". Try adding a backup path?");
+                if(!disableErrors) FlxG.log.error("Can't find JSON file at " + path + ". Try adding a backup path?");
                 return;
             } 
         }
