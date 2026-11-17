@@ -249,4 +249,11 @@ class CtUtil{
 
 		return sprite;
 	}
+
+	public static function getStringPastCharacter(s:String, char:String):String
+	{
+		var split = s.split(char);
+
+		return split[split.length - 1];
+	}
 }
